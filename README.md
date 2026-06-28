@@ -11,6 +11,12 @@ DYA Studio は ZMK Studio をベースに、
 
 を Web から行えるようにした拡張版です。
 
+## キーマップ
+
+![moNa2 keymap](keymap-drawer/mona2.svg)
+
+[keymap-drawer YAML](keymap-drawer/mona2.yaml) / [SVGを開く](keymap-drawer/mona2.svg)
+
 ## DYA Studio の使い方
 
 1. 本リポジトリをビルドし、生成された `mona2_r-...uf2`（中央側＝右手）と `mona2_l-...uf2`（周辺側＝左手）をそれぞれの XIAO BLE に書き込みます。
