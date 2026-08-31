@@ -54,19 +54,6 @@ time-to-max-speed-ms = <0>;
 acceleration-exponent = <0>;
 };
 
-
-// エンコーダ用 runtime-configurable sensor rotate
-// デフォルトはスクロール (cw=SCRL_DOWN, ccw=SCRL_UP)
-// DYA Studio Web UI から レイヤーごとに cw/ccw の binding を
-// kp C_VOL_UP/DN や kp LEFT/RIGHT などへ動的変更可能
-rsr_default: rsr_default {
-compatible = "zmk,behavior-runtime-sensor-rotate";
-#sensor-binding-cells = <0>;
-tap-ms = <16>;
-cw-binding = <&msc SCRL_DOWN>;
-ccw-binding = <&msc SCRL_UP>;
-};
-
 / {
     combos {
         compatible = "zmk,combos";
@@ -517,6 +504,19 @@ ccw-binding = <&msc SCRL_UP>;
             tapping-term-ms = <200>;
             flavor = "tap-preferred";
         };
+
+        // エンコーダ用 runtime-configurable sensor rotate
+        // デフォルトはスクロール (cw=SCRL_DOWN, ccw=SCRL_UP)
+        // DYA Studio Web UI から レイヤーごとに cw/ccw の binding を
+        // kp C_VOL_UP/DN や kp LEFT/RIGHT などへ動的変更可能
+        rsr_default: rsr_default {
+        compatible = "zmk,behavior-runtime-sensor-rotate";
+        #sensor-binding-cells = <0>;
+        tap-ms = <16>;
+        cw-binding = <&msc SCRL_DOWN>;
+        ccw-binding = <&msc SCRL_UP>;
+        };
+
     };
 
     keymap {
@@ -530,7 +530,7 @@ ccw-binding = <&msc SCRL_UP>;
 &holdtap LC(SPACE) LS(LC(M))  &holdtap LEFT_GUI LC(PAGE_UP)  &holdtap LEFT_ALT LC(PAGE_DOWN)  &mkp LCLK  &mt LSHIFT SPACE  &mt LCTRL TAB      &lt_bsdel 5 0  &lt 4 ENTER                                                  &kp PRINTSCREEN
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOLUME_DOWN C_VOLUME_UP>;
+            sensor-bindings = sensor-bindings = <&rsr_default>,<&inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
 
         MOUSE {
@@ -568,7 +568,7 @@ ccw-binding = <&msc SCRL_UP>;
 &kp PERCENT                    &kp PERIOD    &kp COMMA     &mkp RCLK     &mt LEFT_SHIFT EQUAL     &mt LCTRL PERIOD      &trans        &trans                                                                          &holdtap JP_UNDERSCORE UNDER
             >;
 
-            sensor-bindings = <&inc_dec_kp LC(MINUS) LC(PLUS)>;
+            sensor-bindings = <&rsr_default>,<&inc_dec_kp LC(MINUS) LC(PLUS)>;
         };
 
         FUNCTION {
@@ -579,7 +579,7 @@ ccw-binding = <&msc SCRL_UP>;
 &kp LA(LEFT_ARROW)                             &kp LA(RIGHT)  &kp LC(R)  &mkp MCLK  &mt LSHIFT LC(Z)  &mt LCTRL LC(Y)             &trans              &trans                                                          &kp K_CONTEXT_MENU
             >;
 
-            sensor-bindings = <&inc_dec_kp LC(PAGE_UP) LC(PAGE_DOWN)>;
+            sensor-bindings = <&rsr_default>,<&inc_dec_kp LC(PAGE_UP) LC(PAGE_DOWN)>;
         };
 
         SYSTEM {
