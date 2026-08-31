@@ -1,512 +1,298 @@
 layout: {zmk_keyboard: mona2}
 layers:
-  WIN:
+  DEFAULT:
   - Q
-  - W
-  - E
   - R
-  - T
+  - '-'
+  - G
+  - Z
+  - {t: /, s: \}
+  - {t: C, h: Ctl+C}
+  - H
+  - L
   - Y
   - U
-  - I
-  - O
-  - P
-  - A
-  - S
-  - D
-  - F
-  - G
-  - '-'
-  - H
-  - J
-  - K
-  - L
-  - {t: ;, h: MOUSE_W}
-  - {t: Z, h: LEFT SHIFT}
-  - X
-  - C
-  - V
-  - B
-  - ':'
-  - ;
   - N
-  - M
-  - ','
-  - .
-  - {t: /, h: BLE_W}
-  - RCTRL
-  - LEFT WIN
-  - LEFT ALT
-  - {t: '`', h: NUM_W}
-  - {t: SPACE, h: MOUSE_W}
-  - {t: '-', h: SCRL_W}
-  - ENTER
-  - BACKSPACE
-  - RIGHT SHIFT
-  MAC:
-  - Q
-  - W
-  - E
-  - R
+  - I
   - T
-  - Y
-  - U
-  - I
-  - O
-  - P
-  - A
-  - S
   - D
-  - F
-  - G
-  - '-'
-  - H
-  - J
+  - {t: ESC, h: SYSTEM}
+  - P
+  - O
   - K
-  - L
-  - {t: ;, h: MOUSE_W}
-  - {t: Z, h: LEFT SHIFT}
-  - X
-  - C
-  - V
-  - B
-  - ':'
-  - ;
-  - N
+  - {t: A, h: Ctl+A}
+  - S
+  - {t: V, h: LEFT SHIFT}
+  - {t: ',', h: '!'}
+  - {t: ., h: '?'}
   - M
-  - ','
-  - .
-  - {t: /, h: BLE_M}
-  - LEFT GUI
-  - LEFT WIN
-  - LEFT ALT
-  - {t: '`', h: NUM_M}
-  - {t: SPACE, h: MOUSE_M}
-  - {t: '-', h: SCRL_M}
-  - ENTER
-  - BACKSPACE
-  - RIGHT SHIFT
-  NUM_W:
-  - ESCAPE
-  - '!'
-  - '@'
-  - '#'
-  - $
-  - '='
+  - W
+  - CAPSLOCK
+  - ;
+  - {t: X, h: Ctl+X}
+  - {t: E, h: Gui+E}
+  - B
+  - F
+  - J
+  - {t: Sft+Ctl+M, h: Ctl+SPACE}
+  - {t: Ctl+PAGE UP, h: LEFT GUI}
+  - {t: Ctl+PAGE DOWN, h: LEFT ALT}
+  - '&mkp LCLK'
+  - {t: SPACE, h: LSHIFT}
+  - {t: TAB, h: LCTRL}
+  - {t: BSPC, h: FUNCTION, s: DELETE}
+  - {t: ENTER, h: NUMBER}
+  - PRINTSCREEN
+  MOUSE:
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - '&mkp LCLK'
+  - {t: '&mkp MCLK', h: SCROLL}
+  - '&mkp RCLK'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: '&mkp MCLK', h: SCROLL}
+  - {t: '&mkp RCLK', h: SNIPE}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  SCROLL:
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {type: held}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  SNIPE:
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {type: held}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  NUMBER:
+  - {t: '*', h: '"'}
   - '7'
   - '8'
   - '9'
-  - '*'
-  - TAB
-  - '%'
-  - ^
-  - '&'
-  - '*'
-  - '%'
-  - '0'
+  - {t: +, h: ':'}
+  - {t: '~', h: +}
+  - {t: '&backquote', h: '&jp_backquote'}
+  - {t: '&quote', h: '&jp_quote'}
+  - {t: '&doublequote', h: '&jp_doublequote'}
+  - {t: '&caret', h: '&jp_caret'}
+  - /
   - '4'
   - '5'
   - '6'
   - '-'
-  - '|'
-  - (
-  - )
-  - '['
-  - ']'
   - {t: ▽, type: trans}
-  - +
-  - .
-  - '1'
-  - '2'
-  - '3'
-  - /
-  - LCTRL
-  - LEFT GUI
-  - LEFT ALT
-  - {type: held}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - ENTER
-  - BACKSPACE
-  - RIGHT SHIFT
-  NUM_M:
-  - ESCAPE
-  - '!'
-  - '@'
-  - '#'
-  - $
-  - '='
-  - '7'
-  - '8'
-  - '9'
-  - '*'
-  - TAB
-  - '%'
-  - ^
-  - '&'
-  - '*'
-  - '%'
+  - LEFT
+  - DOWN
+  - UP ARROW
+  - RIGHT
+  - \
   - '0'
-  - '4'
-  - '5'
-  - '6'
-  - '-'
-  - '|'
-  - (
-  - )
-  - '['
-  - ']'
-  - {t: ▽, type: trans}
-  - +
+  - '1'
+  - '2'
+  - '3'
+  - {t: ':', h: ''''}
+  - KP NUMLOCK
+  - {t: '&pipe', h: '&jp_pipe'}
+  - '!'
+  - {t: '&at', h: '&jp_at'}
+  - '&hash'
+  - {t: '&amp', h: '&jp_amp'}
+  - '&dollar'
+  - '%'
   - .
-  - '1'
-  - '2'
-  - '3'
-  - /
-  - LEFT GUI
-  - LEFT GUI
-  - LEFT ALT
-  - {type: held}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - ENTER
-  - BACKSPACE
-  - RIGHT SHIFT
-  MOUSE_W:
-  - ESCAPE
-  - Ctl+Z
-  - UP ARROW
-  - Ctl+Y
-  - Ctl+V
-  - ^
-  - '&'
-  - '&mkp MB3'
-  - (
-  - )
-  - TAB
-  - LEFT ARROW
-  - '&screenshot'
-  - RIGHT ARROW
-  - '*'
-  - _
-  - '!'
-  - '&mkp MB1'
-  - SCRL_W
-  - '&mkp MB2'
-  - {t: '&henkan', type: held}
-  - {t: KP 0, h: LEFT SHIFT}
-  - Ctl+Y
-  - DOWN ARROW
-  - END
-  - HOME
-  - '='
-  - {t: ▽, type: trans}
-  - '['
-  - ']'
-  - '{'
-  - '}'
-  - Ctl+SPACE
-  - LCTRL
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - ENTER
-  - BACKSPACE
-  - '|'
-  MOUSE_M:
-  - ESCAPE
-  - Gui+Z
-  - UP ARROW
-  - Gui+Sft+Z
-  - Gui+V
-  - ^
-  - '&'
-  - '&mkp MB3'
-  - (
-  - )
-  - TAB
-  - LEFT ARROW
-  - Gui+Ctl+Sft+4
-  - RIGHT ARROW
-  - Gui+A
-  - _
-  - '!'
-  - '&mkp MB1'
-  - SCRL_M
-  - '&mkp MB2'
-  - Ctl+SPACE
-  - {t: KP 0, h: LEFT SHIFT}
-  - Gui+Ctl+Z
-  - DOWN ARROW
-  - Gui+RIGHT
-  - Gui+LEFT
-  - '='
-  - {t: ▽, type: trans}
-  - '['
-  - ']'
-  - '{'
-  - '}'
-  - Ctl+SPACE
-  - LCTRL
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
+  - ','
+  - '&mkp RCLK'
+  - {t: '=', h: LEFT SHIFT}
+  - {t: ., h: LCTRL}
   - {t: ▽, type: trans}
   - {type: held}
-  - {t: ▽, type: trans}
-  - ENTER
-  - BACKSPACE
-  - '|'
-  SCRL_W:
-  - ESCAPE
-  - Ctl+Sft+TAB
-  - UP ARROW
-  - Ctl+TAB
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - '&mkp MB3'
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - HOME
-  - LEFT ARROW
-  - DOWN ARROW
-  - RIGHT ARROW
-  - END
-  - OUT TOG
-  - {t: ▽, type: trans}
-  - '&mkp MB1'
-  - {t: ▽, type: trans}
-  - '&mkp MB2'
-  - {t: ▽, type: trans}
-  - LEFT SHIFT
-  - Gui+Sft+LEFT ARROW
-  - {t: ▽, type: trans}
-  - Gui+Sft+RIGHT ARROW
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - '&mkp MB1'
-  - {t: ▽, type: trans}
-  - '&mkp MB2'
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {type: held}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  SCRL_M:
-  - ESCAPE
-  - Ctl+Sft+TAB
-  - UP ARROW
-  - Ctl+TAB
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - '&mkp MB3'
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - HOME
-  - LEFT ARROW
-  - DOWN ARROW
-  - RIGHT ARROW
-  - END
-  - OUT TOG
-  - {t: ▽, type: trans}
-  - '&mkp MB1'
-  - {t: ▽, type: trans}
-  - '&mkp MB2'
-  - {t: ▽, type: trans}
-  - LEFT SHIFT
-  - Gui+Sft+LEFT ARROW
-  - {t: ▽, type: trans}
-  - Gui+Sft+RIGHT ARROW
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {type: held}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  FN_W:
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - '&mkp MB1'
-  - '&mkp MB3'
-  - '&mkp MB2'
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  FN_M:
-  - A
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  BLE_W:
-  - F1
-  - F2
-  - F3
-  - F4
-  - F5
-  - '&BT0'
-  - '&BT1'
-  - {t: BT, h: '2'}
-  - {t: BT, h: '3'}
-  - {t: BT, h: '4'}
-  - F6
+  - {t: _, h: Sft+0x87}
+  FUNCTION:
+  - {t: '{', h: '}'}
   - F7
   - F8
   - F9
+  - F12
+  - INSERT
+  - DELETE
+  - PRINTSCREEN
+  - PAUSE BREAK
+  - {t: '}', h: '|'}
+  - {t: (, h: '*'}
+  - F4
+  - F5
+  - F6
+  - F11
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - '&studio_unlock'
-  - {t: ▽, type: trans}
-  - '1'
-  - '2'
-  - '3'
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - '&bootloader'
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: BT CLR, type: held}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - '&bootloader'
-  - BT CLR ALL
-  BLE_M:
+  - HOME
+  - PAGE DOWN
+  - PAGE UP
+  - END
+  - {t: ), h: (}
+  - {t: '[', h: ']'}
   - F1
   - F2
   - F3
-  - F4
-  - F5
-  - '&BT0'
-  - '&BT1'
+  - F10
+  - Ctl+Alt+SCROLLLOCK
+  - Ctl+Sft+ESCAPE
+  - PREV
+  - PLAY PAUSE
+  - STOP
+  - NEXT
+  - {t: ']', h: \}
+  - Alt+LEFT ARROW
+  - Alt+RIGHT
+  - Ctl+R
+  - '&mkp MCLK'
+  - {t: Ctl+Z, h: LSHIFT}
+  - {t: Ctl+Y, h: LCTRL}
+  - {type: held}
+  - {t: ▽, type: trans}
+  - CONTEXT MENU
+  SYSTEM:
+  - '&ind_bat'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - '&ind_con'
+  - OUT USB
+  - OUT USB
+  - '&ind_con'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - '&ind_bat'
+  - {t: ▽, type: trans}
+  - {t: BT, h: '3'}
+  - {t: BT, h: '4'}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {type: held}
+  - {t: BT, h: '0'}
+  - {t: BT, h: '1'}
   - {t: BT, h: '2'}
   - {t: BT, h: '3'}
   - {t: BT, h: '4'}
-  - F6
-  - F7
-  - F8
-  - F9
+  - {t: ▽, type: trans}
+  - {t: BT, h: '0'}
+  - {t: BT, h: '1'}
+  - {t: BT, h: '2'}
+  - OUT BLE
+  - BT CLR
+  - {t: ▽, type: trans}
+  - OUT BLE
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - '&studio_unlock'
-  - {t: ▽, type: trans}
-  - '1'
-  - '2'
-  - '3'
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - '&bootloader'
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: BT CLR, type: held}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -515,9 +301,58 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - '&bootloader'
-  - BT CLR ALL
 combos:
-- p: [39, 38]
-  k: {t: ESC, h: MOUSE_W}
+- p: [19, 18]
+  k: {t: LANGUAGE 1, h: Alt+`}
+  l: [DEFAULT, MOUSE]
+- p: [20, 19]
+  k: '&winmvright'
+  l: [DEFAULT, MOUSE]
+- p: [10, 11]
+  k: '&winmvleft'
+  l: [DEFAULT, MOUSE]
+- p: [21, 32]
+  k: {t: '&brackets', h: '&zen_brackets'}
+  l: [DEFAULT, MOUSE]
+- p: [10, 20]
+  k: {t: '&parenthesis', h: '&zen_parenthesis'}
+  l: [DEFAULT, MOUSE]
+- p: [22, 21]
+  k: {t: Ctl+F, h: Ctl+H}
+  l: [DEFAULT, MOUSE]
+- p: [18, 17]
+  k: {t: Ctl+V, h: Gui+V}
+  l: [DEFAULT, MOUSE]
+- p: [12, 13]
+  k: '&DBLSFT'
+  l: [DEFAULT, MOUSE]
 - p: [11, 12]
-  k: TAB
+  k: LANGUAGE 2
+  l: [DEFAULT, MOUSE]
+- p: [0, 9]
+  k: {t: '&braces', h: '&zen_braces'}
+  l: [DEFAULT, MOUSE]
+- p: [23, 22]
+  k: Ctl+Z
+  l: [DEFAULT, MOUSE]
+- p: [31, 30]
+  k: Ctl+Y
+  l: [DEFAULT, MOUSE]
+- p: [18, 17]
+  k: Gui+TAB
+  l: [NUMBER]
+- p: [8, 9]
+  k: {t: Ctl+W, h: Alt+F4}
+  l: [DEFAULT, MOUSE]
+- p: [7, 8]
+  k: Gui+UP ARROW
+  l: [DEFAULT, MOUSE]
+- p: [6, 7]
+  k: Gui+DOWN
+  l: [DEFAULT, MOUSE]
+- p: [0, 1]
+  k: Alt+LEFT
+  l: [DEFAULT, MOUSE]
+- p: [1, 2]
+  k: Alt+RIGHT
+  l: [DEFAULT, MOUSE]
