@@ -12,9 +12,35 @@
 #undef ZMK_POINTING_DEFAULT_SCRL_VAL
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 100
 
+// OS設定を日本語キーボードのまま使用するための変換定義
+
+#define JP_DOUBLE_QUOTES       AT                // "
+#define JP_AMPERSAND    CARET             // &
+#define JP_QUOTE        AMPERSAND         // '
+#define JP_EQUAL        UNDER             // =
+#define JP_CARET        EQUAL             // ^
+#define JP_YEN          0x89              // ¥
+#define JP_PLUS         COLON             // +
+#define JP_TILDE        PLUS              // ~
+#define JP_PIPE         LS(0x89)          // |
+#define JP_AT           LEFT_BRACKET      // @
+#define JP_COLON        SINGLE_QUOTE      // :
+#define JP_ASTERISK     DOUBLE_QUOTES     // *
+#define JP_BACKQUOTE    LEFT_BRACE        // `
+#define JP_UNDERSCORE   LS(0x87)          // _
+#define JP_LEFT_BRACKET     RIGHT_BRACKET     // [
+#define JP_RIGHT_BRACKET     BACKSLASH         // ]
+#define JP_LEFT_PARENTHESIS       ASTERISK          // (
+#define JP_RIGHT_PARENTHESIS       LEFT_PARENTHESIS  // )
+#define JP_LEFT_BRACE       RIGHT_BRACE       // {
+#define JP_RIGHT_BRACE       PIPE              // }
+#define JP_KANA         LANGUAGE_1        // かな
+#define JP_EISU         LANGUAGE_2        // 英数
+#define JP_HANZEN       GRAVE             // 半角/全角
+
 &mt {
-flavor = "balanced";
-quick-tap-ms = <0>;
+    quick-tap-ms = <175>;
+    flavor = "tap-preferred";
 };
 
 &lt {
@@ -28,104 +54,6 @@ time-to-max-speed-ms = <0>;
 acceleration-exponent = <0>;
 };
 
-/ {
-combos {
-compatible = "zmk,combos";
-
-layer4_ESC {
-bindings = <&lt 4 ESC>;
-key-positions = <39 38>;
-};
-
-tab {
-bindings = <&kp TAB>;
-key-positions = <11 12>;
-};
-};
-
-macros {
-to_layer_0: to_layer_0 {
-compatible = "zmk,behavior-macro-one-param";
-#binding-cells = <1>;
-bindings = <&to 0 &macro_param_1to1 &kp MACRO_PLACEHOLDER>;
-label = "TO_LAYER_0";
-};
-
-BT0: BT0 {
-compatible = "zmk,behavior-macro";
-#binding-cells = <0>;
-bindings =
-<&tog_off 0 &tog_off 1>,
-<&macro_wait_time 200>,
-<&bt BT_SEL 0>,
-<&macro_wait_time 500>,
-<&tog_on 0>;
-
-label = "BT0";
-};
-
-BT1: BT1 {
-compatible = "zmk,behavior-macro";
-#binding-cells = <0>;
-bindings =
-<&tog_off 0 &tog_off 1>,
-<&macro_wait_time 200>,
-<&bt BT_SEL 1>,
-<&macro_wait_time 500>,
-<&tog_on 1>;
-
-label = "BT1";
-};
-
-screenshot: screenshot {
-compatible = "zmk,behavior-macro";
-#binding-cells = <0>;
-bindings =
-<&macro_press>,
-<&kp LEFT_GUI &kp RSHIFT>,
-<&macro_wait_time 20>,
-<&macro_tap>,
-<&kp S>,
-<&macro_release>,
-<&kp LEFT_GUI &kp RSHIFT>;
-
-label = "SCREENSHOT";
-};
-
-henkan: henkan {
-compatible = "zmk,behavior-macro";
-#binding-cells = <0>;
-bindings =
-<&macro_press>,
-<&kp LEFT_ALT>,
-<&macro_wait_time 20>,
-<&macro_tap>,
-<&kp GRAVE>,
-<&macro_release>,
-<&kp LEFT_ALT>;
-
-label = "HENKAN";
-};
-};
-
-behaviors {
-lt_to_layer_0: lt_to_layer_0 {
-compatible = "zmk,behavior-hold-tap";
-label = "LAYER_TAP_TO_0";
-bindings = <&mo>, <&to_layer_0>;
-
-#binding-cells = <2>;
-tapping-term-ms = <200>;
-};
-
-tp_repeat_mo1: tp_repeat_mo1 {
-compatible = "zmk,behavior-hold-tap";
-label = "TP_REPEAT_MO1";
-bindings = <&mo>, <&key_repeat>;
-
-#binding-cells = <2>;
-tapping-term-ms = <200>;
-};
 
 // エンコーダ用 runtime-configurable sensor rotate
 // デフォルトはスクロール (cw=SCRL_DOWN, ccw=SCRL_UP)
@@ -139,181 +67,528 @@ cw-binding = <&msc SCRL_DOWN>;
 ccw-binding = <&msc SCRL_UP>;
 };
 
-tog_on: toggle_layer_on_only {
-compatible = "zmk,behavior-toggle-layer";
-#binding-cells = <1>;
-display-name = "Toggle Layer On";
-toggle-mode = "on";
-};
+/ {
+    combos {
+        compatible = "zmk,combos";
 
-tog_off: toggle_layer_off_only {
-compatible = "zmk,behavior-toggle-layer";
-#binding-cells = <1>;
-display-name = "Toggle Layer Off";
-toggle-mode = "off";
-};
+        IME_ON {
+            bindings = <&imeonoff LA(GRAVE) LANGUAGE_1>;
+            key-positions = <19 18>;
+            layers = <0 1>;
+        };
 
-zfold: zfold {
-compatible = "zmk,behavior-hold-tap";
-label = "ZFOLD";
-bindings = <&kp>, <&kp>;
+        win_mv_right {
+            bindings = <&winmvright>;
+            key-positions = <20 19>;
+            slow-release;
+            layers = <0 1>;
+        };
 
-#binding-cells = <2>;
-tapping-term-ms = <300>;
-flavor = "hold-preferred";
-quick-tap-ms = <150>;
-hold-while-undecided;
-};
+        win_mv_left {
+            bindings = <&winmvleft>;
+            key-positions = <10 11>;
+            slow-release;
+            layers = <0 1>;
+        };
 
-zfoldZ: zfoldZ {
-compatible = "zmk,behavior-tap-dance";
-label = "ZFOLDZ";
-#binding-cells = <0>;
-bindings = <&zfold LEFT_SHIFT Z>, <&kp LS(Z)>;
-};
-};
+        brackets {
+            bindings = <&brack 0 0>;
+            key-positions = <21 32>;
+            layers = <0 1>;
+        };
 
-keymap {
-compatible = "zmk,keymap";
+        parenthesis {
+            bindings = <&paren 0 0>;
+            key-positions = <10 20>;
+            layers = <0 1>;
+        };
 
-win_layer {
-display-name = "WIN";
-bindings = <
-&kp Q &kp W &kp E &kp R &kp T &kp Y &kp U &kp I &kp O &kp P
-&kp A &kp S &kp D &kp F &kp G &kp MINUS &kp H &kp J &kp K &kp L &lt 4 SEMICOLON
-&mt LEFT_SHIFT Z &kp X &kp C &kp V &kp B &kp COLON &kp SEMICOLON &kp N &kp M &kp COMMA &kp DOT &lt 10 SLASH
-&kp RCTRL &kp LEFT_WIN &kp LEFT_ALT &lt 2 GRAVE &lt 4 SPACE &lt 6 MINUS &kp ENTER &kp BACKSPACE &kp RIGHT_SHIFT
->;
+        find_replace {
+            bindings = <&holdtap LC(H) LC(F)>;
+            key-positions = <22 21>;
+            layers = <0 1>;
+        };
 
-sensor-bindings =
-<&rsr_default>,
-<&inc_dec_kp C_VOL_DN C_VOL_UP>;
-};
+        paste {
+            bindings = <&holdtap LG(V) LC(V)>;
+            key-positions = <18 17>;
+            layers = <0 1>;
+        };
 
-mac_layer {
-display-name = "MAC";
-bindings = <
-&kp Q &kp W &kp E &kp R &kp T &kp Y &kp U &kp I &kp O &kp P
-&kp A &kp S &kp D &kp F &kp G &kp MINUS &kp H &kp J &kp K &kp L &lt 4 SEMICOLON
-&mt LEFT_SHIFT Z &kp X &kp C &kp V &kp B &kp COLON &kp SEMICOLON &kp N &kp M &kp COMMA &kp DOT &lt 11 SLASH
-&kp LEFT_GUI &kp LEFT_WIN &kp LEFT_ALT &lt 3 GRAVE &lt 5 SPACE &lt 7 MINUS &kp ENTER &kp BACKSPACE &kp RIGHT_SHIFT
->;
+        dblsft {
+            bindings = <&DBLSFT>;
+            key-positions = <12 13>;
+            layers = <0 1>;
+        };
 
-sensor-bindings =
-<&rsr_default>,
-<&inc_dec_kp C_VOL_DN C_VOL_UP>;
-};
+        IME_OFF {
+            bindings = <&kp LANGUAGE_2>;
+            key-positions = <11 12>;
+            layers = <0 1>;
+        };
 
-num_win {
-display-name = "NUM_W";
-bindings = <
-&kp ESCAPE &kp EXCLAMATION &kp AT_SIGN &kp HASH &kp DOLLAR &kp EQUAL &kp NUMBER_7 &kp NUMBER_8 &kp NUMBER_9 &kp ASTERISK
-&kp TAB &kp PERCENT &kp CARET &kp AMPERSAND &kp ASTERISK &kp PERCENT &kp NUMBER_0 &kp NUMBER_4 &kp NUMBER_5 &kp NUMBER_6 &kp MINUS
-&kp PIPE &kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS &kp LEFT_BRACKET &kp RIGHT_BRACKET &trans &kp PLUS &kp DOT &kp NUMBER_1 &kp NUMBER_2 &kp NUMBER_3 &kp SLASH
-&kp LCTRL &kp LEFT_GUI &kp LEFT_ALT &trans &trans &trans &kp ENTER &kp BACKSPACE &kp RIGHT_SHIFT
->;
+        braces {
+            bindings = <&brace 0 0>;
+            key-positions = <0 9>;
+            layers = <0 1>;
+        };
 
-sensor-bindings = <&rsr_default>;
-};
+        undo {
+            bindings = <&kp LC(Z)>;
+            key-positions = <23 22>;
+            layers = <0 1>;
+        };
 
-num_mac {
-display-name = "NUM_M";
-bindings = <
-&kp ESCAPE &kp EXCLAMATION &kp AT_SIGN &kp HASH &kp DOLLAR &kp EQUAL &kp NUMBER_7 &kp NUMBER_8 &kp NUMBER_9 &kp ASTERISK
-&kp TAB &kp PERCENT &kp CARET &kp AMPERSAND &kp ASTERISK &kp PERCENT &kp NUMBER_0 &kp NUMBER_4 &kp NUMBER_5 &kp NUMBER_6 &kp MINUS
-&kp PIPE &kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS &kp LEFT_BRACKET &kp RIGHT_BRACKET &trans &kp PLUS &kp DOT &kp NUMBER_1 &kp NUMBER_2 &kp NUMBER_3 &kp SLASH
-&kp LEFT_GUI &kp LEFT_GUI &kp LEFT_ALT &trans &trans &trans &kp ENTER &kp BACKSPACE &kp RIGHT_SHIFT
->;
+        redo {
+            bindings = <&kp LC(Y)>;
+            key-positions = <31 30>;
+            layers = <0 1>;
+        };
 
-sensor-bindings = <&rsr_default>;
-};
+        taskview {
+            bindings = <&kp LG(TAB)>;
+            key-positions = <18 17>;
+            layers = <4>;
+        };
 
-mouse_win {
-display-name = "MOUSE_W";
-bindings = <
-&kp ESCAPE &kp LC(Z) &kp UP_ARROW &kp LC(Y) &kp LC(V) &kp CARET &kp AMPERSAND &mkp MB3 &kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS
-&kp TAB &kp LEFT_ARROW &screenshot &kp RIGHT_ARROW &kp ASTERISK &kp UNDERSCORE &kp EXCLAMATION &mkp MB1 &mo 6 &mkp MB2 &henkan
-&mt LEFT_SHIFT KP_NUMBER_0 &kp LC(Y) &kp DOWN_ARROW &kp END &kp HOME &kp EQUAL &trans &kp LEFT_BRACKET &kp RIGHT_BRACKET &kp LEFT_BRACE &kp RIGHT_BRACE &kp LC(SPACE)
-&kp LCTRL &trans &trans &trans &trans &trans &kp ENTER &kp BACKSPACE &kp PIPE
->;
+        close {
+            bindings = <&holdtap LA(F4) LC(W)>;
+            key-positions = <8 9>;
+            layers = <0 1>;
+        };
 
-sensor-bindings = <&rsr_default>;
-};
+        maximize {
+            bindings = <&kp LG(UP_ARROW)>;
+            key-positions = <7 8>;
+            layers = <0 1>;
+        };
 
-mouse_mac {
-display-name = "MOUSE_M";
-bindings = <
-&kp ESCAPE &kp LG(Z) &kp UP_ARROW &kp LG(LS(Z)) &kp LG(V) &kp CARET &kp AMPERSAND &mkp MB3 &kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS
-&kp TAB &kp LEFT_ARROW &kp LG(LC(LS(NUMBER_4))) &kp RIGHT_ARROW &kp LG(A) &kp UNDERSCORE &kp EXCLAMATION &mkp MB1 &mo 7 &mkp MB2 &kp LC(SPACE)
-&mt LEFT_SHIFT KP_NUMBER_0 &kp LG(LC(Z)) &kp DOWN_ARROW &kp LG(RIGHT) &kp LG(LEFT) &kp EQUAL &trans &kp LEFT_BRACKET &kp RIGHT_BRACKET &kp LEFT_BRACE &kp RIGHT_BRACE &kp LC(SPACE)
-&kp LCTRL &trans &trans &trans &trans &trans &kp ENTER &kp BACKSPACE &kp PIPE
->;
+        minimize {
+            bindings = <&kp LG(DOWN)>;
+            key-positions = <6 7>;
+            layers = <0 1>;
+            timeout-ms = <50>;
+            require-prior-idle-ms = <500>;
+        };
 
-sensor-bindings = <&rsr_default>;
-};
+        browse_back {
+            bindings = <&kp LA(LEFT)>;
+            key-positions = <0 1>;
+            slow-release;
+            layers = <0 1>;
+        };
 
-scroll_win {
-display-name = "SCRL_W";
-bindings = <
-&kp ESCAPE &kp LC(LS(TAB)) &kp UP_ARROW &kp LC(TAB) &trans &trans &trans &mkp MB3 &trans &trans
-&kp HOME &kp LEFT_ARROW &kp DOWN_ARROW &kp RIGHT_ARROW &kp END &out OUT_TOG &trans &mkp MB1 &trans &mkp MB2 &trans
-&kp LEFT_SHIFT &kp LG(LS(LEFT_ARROW)) &trans &kp LG(LS(RIGHT_ARROW)) &trans &trans &trans &trans &mkp MB1 &trans &mkp MB2 &trans
-&trans &trans &trans &trans &trans &trans &trans &trans &trans
->;
+        browse_forward {
+            bindings = <&kp LA(RIGHT)>;
+            key-positions = <1 2>;
+            slow-release;
+            layers = <0 1>;
+        };
+    };
 
-sensor-bindings = <&rsr_default>;
-};
+    macros {
+        DBLSFT: DBLSFT {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT_SHIFT &kp LEFT_SHIFT>;
+        };
 
-scroll_mac {
-display-name = "SCRL_M";
-bindings = <
-&kp ESCAPE &kp LC(LS(TAB)) &kp UP_ARROW &kp LC(TAB) &trans &trans &trans &mkp MB3 &trans &trans
-&kp HOME &kp LEFT_ARROW &kp DOWN_ARROW &kp RIGHT_ARROW &kp END &out OUT_TOG &trans &mkp MB1 &trans &mkp MB2 &trans
-&kp LEFT_SHIFT &kp LG(LS(LEFT_ARROW)) &trans &kp LG(LS(RIGHT_ARROW)) &trans &trans &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans &trans &trans &trans
->;
+        DBLCTL: DBLCTL {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LCTRL &kp LCTRL>;
+        };
 
-sensor-bindings = <&rsr_default>;
-};
+        winmvright: winmvright {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_GUI &kp RIGHT>,
+                <&macro_release>,
+                <&kp RIGHT &kp LEFT_WIN>;
+        };
 
-function_win {
-display-name = "FN_W";
-bindings = <
-&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans &trans &mkp MB1 &mkp MB3 &mkp MB2 &trans
-&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans &trans &trans &trans
->;
-};
+        winmvleft: winmvleft {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_GUI &kp LEFT>,
+                <&macro_release>,
+                <&kp LEFT &kp LEFT_WIN>;
+        };
 
-function_mac {
-display-name = "FN_M";
-bindings = <
-&kp A &trans &trans &trans &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans &trans &trans &trans
->;
-};
+        at: at {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANGUAGE_2 &kp AT_SIGN>;
+        };
 
-ble_win {
-display-name = "BLE_W";
-bindings = <
-&kp F1 &kp F2 &kp F3 &kp F4 &kp F5 &BT0 &BT1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4
-&kp F6 &kp F7 &kp F8 &kp F9 &trans &trans &trans &trans &trans &trans &studio_unlock
-&trans &kp NUMBER_1 &kp NUMBER_2 &kp NUMBER_3 &trans &trans &bootloader &trans &trans &trans &trans &bt BT_CLR
-&trans &trans &trans &trans &trans &trans &trans &bootloader &bt BT_CLR_ALL
->;
-};
+        hash: hash {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANGUAGE_2 &kp HASH>;
+        };
 
-ble_mac {
-display-name = "BLE_M";
-bindings = <
-&kp F1 &kp F2 &kp F3 &kp F4 &kp F5 &BT0 &BT1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4
-&kp F6 &kp F7 &kp F8 &kp F9 &trans &trans &trans &trans &trans &trans &studio_unlock
-&trans &kp NUMBER_1 &kp NUMBER_2 &kp NUMBER_3 &trans &trans &bootloader &trans &trans &trans &trans &bt BT_CLR
-&trans &trans &trans &trans &trans &trans &trans &bootloader &bt BT_CLR_ALL
->;
-};
-};
+        amp: amp {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANGUAGE_2 &kp AMPERSAND>;
+        };
+
+        dollar: doller {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANGUAGE_2 &kp DOLLAR>;
+        };
+
+        backquote: backquote {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANGUAGE_2 &kp GRAVE>;
+        };
+
+        quote: quote {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANGUAGE_2 &kp SINGLE_QUOTE>;
+        };
+
+        doublequote: doublequote {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANGUAGE_2 &kp DOUBLE_QUOTES>;
+        };
+
+        caret: caret {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANGUAGE_2 &kp CARET>;
+        };
+
+        pipe: pipe {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANGUAGE_2 &kp PIPE>;
+        };
+
+        jp_at: jp_at {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANGUAGE_2 &kp JP_AT>;
+        };
+
+        jp_amp: jp_amp {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANGUAGE_2 &kp JP_AMPERSAND>;
+        };
+
+        jp_quote: jp_quote {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANGUAGE_2 &kp JP_QUOTE>;
+        };
+
+        jp_doublequote: jp_doublequote {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANGUAGE_2 &kp JP_DOUBLE_QUOTES>;
+        };
+
+        jp_caret: jp_caret {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANGUAGE_2 &kp JP_CARET>;
+        };
+
+        jp_pipe: jp_pipe {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANGUAGE_2 &kp JP_PIPE>;
+        };
+
+        parenthesis: parenthesis {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANGUAGE_2 &kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS &kp LEFT_ARROW>;
+        };
+
+        brackets: brackets {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANGUAGE_2 &kp LEFT_BRACKET &kp RIGHT_BRACKET &kp LEFT>;
+        };
+
+        braces: braces {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANGUAGE_2 &kp LEFT_BRACE &kp RIGHT_BRACE &kp LEFT>;
+        };
+
+        zen_parenthesis: zen_parenthesis {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANGUAGE_1 &kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS &kp ENTER &kp LEFT_ARROW>;
+        };
+
+        zen_brackets: zen_brackets {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANGUAGE_1 &kp LEFT_BRACKET &kp RIGHT_BRACKET &kp ENTER &kp LEFT>;
+        };
+
+        zen_braces: zen_braces {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANGUAGE_1 &kp LEFT_BRACE &kp RIGHT_BRACE &kp ENTER &kp LEFT>;
+        };
+
+        jp_backquote: jp_backquote {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANGUAGE_2 &kp LEFT_BRACE>;
+            label = "JP_BACKQUOTE";
+        };
+    };
+
+    behaviors {
+        BSDEL: BSDEL {
+            compatible = "zmk,behavior-mod-morph";
+            bindings = <&kp BSPC>, <&kp DELETE>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        lt_bsdel: lt_bsdel {
+            compatible = "zmk,behavior-hold-tap";
+            bindings = <&mo>, <&BSDEL>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <300>;
+            flavor = "tap-preferred";
+        };
+
+        imeonoff: imeonoff {
+            compatible = "zmk,behavior-hold-tap";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "tap-preferred";
+        };
+
+        holdtap: holdtap {
+            compatible = "zmk,behavior-hold-tap";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <300>;
+            flavor = "tap-preferred";
+            quick-tap-ms = <250>;
+            require-prior-idle-ms = <150>;
+            hold-trigger-on-release;
+        };
+
+        paren: paren {
+            compatible = "zmk,behavior-hold-tap";
+            bindings = <&zen_parenthesis>, <&parenthesis>;
+
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+        };
+
+        brack: brack {
+            compatible = "zmk,behavior-hold-tap";
+            bindings = <&zen_brackets>, <&brackets>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "tap-preferred";
+        };
+
+        brace: brace {
+            compatible = "zmk,behavior-hold-tap";
+            bindings = <&zen_braces>, <&braces>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "tap-preferred";
+        };
+
+        mkp_layer: mkp_layer {
+            compatible = "zmk,behavior-hold-tap";
+            bindings = <&mo>, <&mkp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+        };
+
+        slash: slash {
+            compatible = "zmk,behavior-mod-morph";
+            bindings = <&kp SLASH>, <&kp BACKSLASH>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        mt_slash: mt_slash {
+            compatible = "zmk,behavior-hold-tap";
+            bindings = <&kp>, <&slash>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <300>;
+            quick-tap-ms = <250>;
+            require-prior-idle-ms = <150>;
+            flavor = "tap-preferred";
+            hold-trigger-on-release;
+        };
+
+        uj_backquote: uj_backquote {
+            compatible = "zmk,behavior-hold-tap";
+            label = "UJ_BACKQUOTE";
+            bindings = <&jp_backquote>, <&backquote>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "tap-preferred";
+        };
+
+        uj_quote: uj_quote {
+            compatible = "zmk,behavior-hold-tap";
+            label = "UJ_QUOTE";
+            bindings = <&jp_quote>, <&quote>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "tap-preferred";
+        };
+
+        uj_doublequote: uj_doublequote {
+            compatible = "zmk,behavior-hold-tap";
+            label = "UJ_DOUBLEQUOTE";
+            bindings = <&jp_doublequote>, <&doublequote>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "tap-preferred";
+        };
+
+        uj_caret: uj_caret {
+            compatible = "zmk,behavior-hold-tap";
+            label = "UJ_CARET";
+            bindings = <&jp_caret>, <&caret>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "tap-preferred";
+        };
+
+        uj_pipe: uj_pipe {
+            compatible = "zmk,behavior-hold-tap";
+            label = "UJ_PIPE";
+            bindings = <&jp_pipe>, <&pipe>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "tap-preferred";
+        };
+
+        uj_at: uj_at {
+            compatible = "zmk,behavior-hold-tap";
+            label = "UJ_AT";
+            bindings = <&jp_at>, <&at>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "tap-preferred";
+        };
+
+        uj_amp: uj_amp {
+            compatible = "zmk,behavior-hold-tap";
+            label = "UJ_AMP";
+            bindings = <&jp_amp>, <&amp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "tap-preferred";
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        DEFAULT {
+            bindings = <
+&kp Q                         &kp R                          &kp MINUS                        &kp G      &kp Z                                               &slash            &holdtap LC(C) C  &kp H  &kp L             &kp Y
+&kp U                         &kp N                          &kp I                            &kp T      &kp D                                &lt 6 ESC      &kp P             &kp O             &kp K  &holdtap LC(A) A  &kp S
+&holdtap LEFT_SHIFT V         &holdtap EXCLAMATION COMMA     &holdtap QUESTION PERIOD         &kp M      &kp W             &kp CAPSLOCK       &kp SEMICOLON  &holdtap LC(X) X  &holdtap LG(E) E  &kp B  &kp F             &kp J
+&holdtap LC(SPACE) LS(LC(M))  &holdtap LEFT_GUI LC(PAGE_UP)  &holdtap LEFT_ALT LC(PAGE_DOWN)  &mkp LCLK  &mt LSHIFT SPACE  &mt LCTRL TAB      &lt_bsdel 5 0  &lt 4 ENTER                                                  &kp PRINTSCREEN
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOLUME_DOWN C_VOLUME_UP>;
+        };
+
+        MOUSE {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans                                            &trans  &trans     &trans             &trans     &trans
+&trans  &trans  &trans  &trans  &trans                                    &trans  &trans  &trans     &trans             &trans     &trans
+&trans  &trans  &trans  &trans  &trans             &trans                 &trans  &trans  &mkp LCLK  &mkp_layer 2 MCLK  &mkp RCLK  &trans
+&trans  &trans  &trans  &trans  &mkp_layer 2 MCLK  &mkp_layer 3 RCLK      &trans  &trans                                           &trans
+            >;
+        };
+
+        SCROLL {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans              &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
+            >;
+        };
+
+        SNIPE {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans              &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
+            >;
+        };
+
+        NUMBER {
+            bindings = <
+&holdtap JP_ASTERISK ASTERISK  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &holdtap JP_PLUS PLUS                                        &holdtap JP_TILDE TILDE  &uj_backquote 0 0  &uj_quote 0 0  &uj_doublequote 0 0  &uj_caret 0 0
+&kp SLASH                      &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp MINUS                                      &trans        &kp LEFT                 &kp DOWN           &kp UP_ARROW   &kp RIGHT            &kp BACKSLASH
+&kp N0                         &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &holdtap JP_COLON COLON  &kp KP_NUMLOCK        &uj_pipe 0 0  &kp EXCLAMATION          &uj_at 0 0         &hash          &uj_amp 0 0          &dollar
+&kp PERCENT                    &kp PERIOD    &kp COMMA     &mkp RCLK     &mt LEFT_SHIFT EQUAL     &mt LCTRL PERIOD      &trans        &trans                                                                          &holdtap JP_UNDERSCORE UNDER
+            >;
+
+            sensor-bindings = <&inc_dec_kp LC(MINUS) LC(PLUS)>;
+        };
+
+        FUNCTION {
+            bindings = <
+&holdtap JP_LEFT_BRACE LEFT_BRACE              &kp F7         &kp F8     &kp F9     &kp F12                                                           &kp INSERT  &kp DELETE        &kp PRINTSCREEN  &kp PAUSE_BREAK  &holdtap JP_RIGHT_BRACE RIGHT_BRACE
+&holdtap JP_LEFT_PARENTHESIS LEFT_PARENTHESIS  &kp F4         &kp F5     &kp F6     &kp F11                                       &trans              &kp HOME    &kp PAGE_DOWN     &kp PAGE_UP      &kp END          &holdtap JP_RIGHT_PARENTHESIS RIGHT_PARENTHESIS
+&holdtap JP_LEFT_BRACKET LEFT_BRACKET          &kp F1         &kp F2     &kp F3     &kp F10           &kp LC(LA(SCROLLLOCK))      &kp LC(LS(ESCAPE))  &kp C_PREV  &kp C_PLAY_PAUSE  &kp C_STOP       &kp C_NEXT       &holdtap JP_RIGHT_BRACKET RIGHT_BRACKET
+&kp LA(LEFT_ARROW)                             &kp LA(RIGHT)  &kp LC(R)  &mkp MCLK  &mt LSHIFT LC(Z)  &mt LCTRL LC(Y)             &trans              &trans                                                          &kp K_CONTEXT_MENU
+            >;
+
+            sensor-bindings = <&inc_dec_kp LC(PAGE_UP) LC(PAGE_DOWN)>;
+        };
+
+        SYSTEM {
+            bindings = <
+&ind_bat     &trans        &trans        &ind_con      &out OUT_USB                          &out OUT_USB  &ind_con      &trans        &trans        &ind_bat
+&trans       &bt BT_SEL 3  &bt BT_SEL 4  &trans        &trans                        &trans  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
+&trans       &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &out OUT_BLE  &bt BT_CLR      &trans  &out OUT_BLE  &trans        &trans        &trans        &trans
+&bootloader  &trans        &trans        &trans        &trans        &trans          &trans  &trans                                                  &bootloader
+            >;
+        };
+    };
 };
